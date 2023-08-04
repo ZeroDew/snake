@@ -76,11 +76,20 @@ let x = ref(Math.floor(Math.random() * 10))
 let y = ref(Math.floor(Math.random() * 10))
 
 
-
-function createFood() {
-    snake.forEach((ele, index) => {
-
+//判断食物生成位置
+function isCover() {
+    snake.forEach(ele => {
+        if (ele[0] === x.value && ele[1] === y.value) {
+            x = ref(Math.floor(Math.random() * 10))
+            y = ref(Math.floor(Math.random() * 10))
+            isCover()
+        } else return
     })
+}
+
+//绘制食物
+function createFood() {
+    isCover()
     map[x.value][y.value] = -1
 }
 createFood()
@@ -95,7 +104,7 @@ function EatFood() {
     }
     return flag
 }
-/* 是否触碰到自身 */
+/* 是否触碰到自身-----未实现 */
 function isDead(row: number, col: number) {
     if (snake[0].includes(row) && snake[0].includes(col)) {
         console.log(snake);
@@ -208,7 +217,7 @@ onMounted(() => {
         flex: 1;
         display: flex;
         list-style: none;
-  
+
 
         .col {
             flex: 1;
