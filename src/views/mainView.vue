@@ -5,7 +5,7 @@
                 <span v-if="ele === -1" class="item food"></span>
                 <span v-else-if="ele === 0" class="item"></span>
                 <span v-else-if="ele === 1" class="item snake snake_head" :class="direction">
-                    <img src="@/assets/images/up.png" alt=""></span>
+                </span>
                 <span v-else class="item snake"></span>
             </li>
         </ul>
@@ -75,7 +75,12 @@ snake.forEach((ele, index) => {
 let x = ref(Math.floor(Math.random() * 10))
 let y = ref(Math.floor(Math.random() * 10))
 
+
+
 function createFood() {
+    snake.forEach((ele, index) => {
+
+    })
     map[x.value][y.value] = -1
 }
 createFood()
@@ -190,6 +195,7 @@ onMounted(() => {
 <style scoped lang="less">
 * {
     user-select: none;
+    box-sizing: border-box;
 }
 
 .map {
@@ -202,10 +208,12 @@ onMounted(() => {
         flex: 1;
         display: flex;
         list-style: none;
+  
 
         .col {
             flex: 1;
-            // border: 1px solid rgba(255, 255, 255, .3);
+            border: 1px solid rgba(255, 255, 255, .1);
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -218,27 +226,21 @@ onMounted(() => {
                 align-items: center;
 
                 &.food {
-
-                    background-image: url('@/assets/images/food.png');
-                    background-size: cover;
-
+                    width: 80%;
+                    height: 80%;
+                    background-color: #fff;
+                    border-radius: 50%;
                 }
 
                 &.snake {
-
                     background-color: rgba(253, 89, 92, 1);
                 }
 
                 &.snake_head {
-
-                    background-color: transparent;
-
-                    img {
-                        width: 115%;
-                        height: 115%;
-                        object-fit: cover;
-                    }
-
+                    width: 100%;
+                    height: 100%;
+                    // background-color: transparent;
+                    border-radius: 5% 5% 0 0;
 
                 }
 
